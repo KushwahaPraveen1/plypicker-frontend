@@ -214,6 +214,7 @@ const router = useRouter();
               </h3>
               <Image
                 src={request.requestData.image}
+                width={100} height={100}
                 alt={request.requestData.productName}
                 style={{
                   width: '100%',

@@ -89,6 +89,8 @@ const UserRequests = () => {
                 <strong>Image:</strong> 
                 <Image
                   src={request.requestData.image} 
+                  width={100}
+                  height={100}
                   alt={request.requestData.productName} 
                   style={{ width: '100px', height: 'auto', borderRadius: '4px', border: '1px solid #ddd' }} 
                 />
