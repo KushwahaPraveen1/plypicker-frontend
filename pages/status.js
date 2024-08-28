@@ -212,9 +212,8 @@ const router = useRouter();
               <h3 style={{ fontSize: '16px', margin: '0 0 10px', textAlign: 'center' }}>
                 <b><i><u>{request.requestData.productName}</u></i></b>
               </h3>
-              <Image
+              <img
                 src={request.requestData.image}
-                width={100} height={100}
                 alt={request.requestData.productName}
                 style={{
                   width: '100%',

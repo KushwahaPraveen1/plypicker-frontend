@@ -148,7 +148,7 @@ const ProductItem = ({ product, token }) => {
     <div>
       <div style={{ height:'380px', width: '200px', border: '1px solid #ddd', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', textAlign: 'left' }}>
         <h3 style={{ fontSize: '16px', margin: '0 0 10px' }}><b><i><u>{product.productName}</u></i></b></h3>
-        <Image src={product.image} alt={product.productName} width={100} height={100} style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
+        <img src={product.image} alt={product.productName} style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Price: </u></i></b>${product.price}</p>
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Description: </u></i></b>{product.productDescription}</p>
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Department: </u></i></b>{product.department}</p>
