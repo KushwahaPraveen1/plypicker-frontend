@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './navbar';
 import { useRouter } from 'next/router';
 import withAuth from './withAuth';
+import Image from 'next/image';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -211,7 +212,7 @@ const router = useRouter();
               <h3 style={{ fontSize: '16px', margin: '0 0 10px', textAlign: 'center' }}>
                 <b><i><u>{request.requestData.productName}</u></i></b>
               </h3>
-              <img
+              <Image
                 src={request.requestData.image}
                 alt={request.requestData.productName}
                 style={{

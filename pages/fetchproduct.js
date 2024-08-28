@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import withAuth from './withAuth';
 import Navbar from './navbar';
+import Image from 'next/image';
 const UserRequests = () => {
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState(null); // To handle errors
@@ -86,7 +87,7 @@ const UserRequests = () => {
               </p>
               <p style={{ margin: '5px 0', fontSize: '14px' }}>
                 <strong>Image:</strong> 
-                <img 
+                <Image
                   src={request.requestData.image} 
                   alt={request.requestData.productName} 
                   style={{ width: '100px', height: 'auto', borderRadius: '4px', border: '1px solid #ddd' }} 

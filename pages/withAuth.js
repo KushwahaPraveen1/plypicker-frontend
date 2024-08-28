@@ -1,9 +1,8 @@
-// components/withAuth.js
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'; // Adjust import based on your Next.js version
+import { useRouter } from 'next/router';
 
 const withAuth = (WrappedComponent) => {
-  return (props) => {
+  const Wrapper = (props) => {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
     const token = typeof window !== 'undefined' ? sessionStorage.getItem('token') : null;
@@ -61,6 +60,11 @@ const withAuth = (WrappedComponent) => {
 
     return <WrappedComponent {...props} />;
   };
+
+  // Add displayName for better debugging
+  Wrapper.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+  return Wrapper;
 };
 
 export default withAuth;

@@ -6,6 +6,7 @@ import Navbar from './navbar';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from 'next/image';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUmr-HZH7BbxUV84-4v-W7NhOTJ-kiT6U",
@@ -147,7 +148,7 @@ const ProductItem = ({ product, token }) => {
     <div>
       <div style={{ height:'380px', width: '200px', border: '1px solid #ddd', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', textAlign: 'left' }}>
         <h3 style={{ fontSize: '16px', margin: '0 0 10px' }}><b><i><u>{product.productName}</u></i></b></h3>
-        <img src={product.image} alt={product.productName} style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
+        <Image src={product.image} alt={product.productName} style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Price: </u></i></b>${product.price}</p>
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Description: </u></i></b>{product.productDescription}</p>
         <p style={{ margin: '5px 0', fontSize: '14px' }}><b><i><u>Department: </u></i></b>{product.department}</p>
