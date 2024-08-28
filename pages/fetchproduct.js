@@ -90,7 +90,7 @@ const UserRequests = () => {
                 <img
                   src={request.requestData.image} 
                    alt={request.requestData.productName} 
-                  style={{ width: '100px', height: 'auto', borderRadius: '4px', border: '1px solid #ddd' }} 
+                  style={{ width: '100px', height: '200px', borderRadius: '4px', border: '1px solid #ddd' }} 
                 />
               </p>
               <p style={{ margin: '5px 0', fontSize: '14px' }}>

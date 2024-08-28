@@ -61,6 +61,7 @@ const Navbar = () => {
   const navbarStyle = {
     display: 'flex',
     justifyContent: 'space-between',
+    flexWrap:'wrap',
     alignItems: 'center',
     padding: '1rem 2rem',
     backgroundColor: '#c9c9c9',
