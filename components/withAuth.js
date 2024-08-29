@@ -23,10 +23,10 @@ const withAuth = (WrappedComponent) => {
         const isAdmin = user.role === 'admin';
 
         // Admin-specific routes
-        const adminRoutes = ['/admin', '/status'];
+        const adminRoutes = ['/admin', '/status', '/product1/id'];
 
         // Non-admin-specific routes
-        const nonAdminRoutes = ['/team_member', '/fetchproduct'];
+        const nonAdminRoutes = ['/team_member', '/fetchproduct','/product2/id'];
 
         if (isAdmin) {
           if (nonAdminRoutes.includes(pathname)) {

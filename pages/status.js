@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './navbar';
+import Navbar from '../components/navbar';
 import { useRouter } from 'next/router';
-import withAuth from './withAuth';
+import withAuth from '../components/withAuth';
 import Image from 'next/image';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,12 +11,10 @@ const Status = () => {
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
 const router = useRouter();
+ 
 
-  // Only execute on the client side
 
-
-  useEffect(() => {
-    // This code will only run on the client side
+  useEffect(() => { 
     const storedToken = sessionStorage.getItem('token');
     setToken(storedToken);
 
@@ -37,7 +35,7 @@ const router = useRouter();
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`${response.status}`);
       }
 
       const data = await response.json();
@@ -45,6 +43,36 @@ const router = useRouter();
     } catch (error) {
       console.error('Error fetching requests:', error);
       setError('Failed to fetch requests. Please try again later.');
+      toast.error('Failed to fetch requests. Please try again later.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      if(error.message==='401')
+      {
+        toast.error('Unauthorized', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setTimeout(() => {
+          sessionStorage.removeItem('token');
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          router.push('/login');
+        }, 2000);
+      }
     }
   };
 
@@ -77,7 +105,7 @@ const router = useRouter();
         if (response.status === 404) {
           throw new Error('Resource not found. Check the endpoint URL.');
         }
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`${response.status}`);
       }
   
       // Delay of 2 seconds
@@ -95,7 +123,7 @@ const router = useRouter();
         theme: "dark" 
       });
   
-      fetchRequests(token); // Refresh the requests after approval
+      fetchRequests(token);  
     } catch (error) {
       console.error('Error approving request:', error);
       setError('Failed to approve request. Please try again later.');
@@ -109,6 +137,26 @@ const router = useRouter();
         progress: undefined,
         theme: "dark"
       });
+      if(error.message==='401')
+      {
+        toast.error('Unauthorized', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setTimeout(() => {
+          sessionStorage.removeItem('token');
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          router.push('/login');
+        }, 2000);
+      }
     }
   };
 
@@ -141,13 +189,13 @@ const router = useRouter();
         if (response.status === 404) {
           throw new Error('Resource not found. Check the endpoint URL.');
         }
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`${response.status}`);
       }
   
-      // Delay of 2 seconds
+       
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Success toast and refresh
+ 
       toast.success('Request Rejected', {
         position: "top-right",
         autoClose: 3000,
@@ -159,7 +207,7 @@ const router = useRouter();
         theme: "dark"
       });
   
-      fetchRequests(token); // Refresh the requests after rejection
+      fetchRequests(token);  
     } catch (error) {
       console.error('Error rejecting request:', error);
       setError('Failed to reject request. Please try again later.');
@@ -173,6 +221,26 @@ const router = useRouter();
         progress: undefined,
         theme: "dark"
       });
+      if(error.message==='401')
+      {
+        toast.error('Unauthorized', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setTimeout(() => {
+          sessionStorage.removeItem('token');
+          sessionStorage.removeItem('user');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          router.push('/login');
+        }, 2000);
+      }
     }
   };
 
@@ -185,7 +253,7 @@ const router = useRouter();
       case 'pending':
         return '#f7d635';
       default:
-        return 'gray'; // Default color for unknown statuses
+        return 'gray'; 
     }
   };
 

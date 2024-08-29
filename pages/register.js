@@ -1,10 +1,10 @@
-import * as React from "react";
-import { useState,useEffect } from "react";
+// components/Register.js
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from 'next/router'; 
+import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import withAuth from "./withAuth";
 import Link from "next/link";
 
 function Register() {
@@ -12,25 +12,23 @@ function Register() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const router = useRouter();
+
   useEffect(() => {
-    // Only execute on the client side
     if (typeof window !== 'undefined') {
       const token = sessionStorage.getItem('token');
       const user = JSON.parse(sessionStorage.getItem('user'));
-  
-      // Check if token exists
+
       if (token) {
-        // Redirect based on user role
         if (user && user.role) {
           router.push(user.role === 'admin' ? '/admin' : '/team_member');
         }
       }
     }
   }, [router]);
+
   async function handleRegister(e) {
     e.preventDefault();
-  
-    // Check if all fields are filled
+
     if (!username || !password || !role) {
       toast.error('Please fill all fields', {
         position: "top-right",
@@ -44,14 +42,14 @@ function Register() {
       });
       return;
     }
-  
+
     try {
       const result = await axios.post("https://plypicker-backend-xjn6.onrender.com/api/auth/register", {
         username: username,
         password: password,
         role: role,
       });
-  
+
       if (result.status === 201) {
         toast.success('Registration Successful', {
           position: "top-right",
@@ -63,16 +61,13 @@ function Register() {
           progress: undefined,
           theme: "dark",
         });
-  
-        // Optionally reset form fields
+
         setUsername("");
         setPassword("");
         setRole("");
-  
-        // Wait for 2 seconds before redirecting
+
         await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Redirect to login page
+
         router.push('/login');
       }
     } catch (err) {
@@ -109,7 +104,7 @@ function Register() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#f4f4f9',
+        backgroundColor: '#e9ecef',
         padding: '20px'
       }}>
         <div style={{
@@ -118,18 +113,19 @@ function Register() {
           backgroundColor: '#ffffff',
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          padding: '20px',
+          padding: '30px',
           boxSizing: 'border-box',
           textAlign: 'center'
         }}>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZelTVn718ySIT-tv-ZY2T1-kqRE5Z1dzWzQ&s" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
           <h2 style={{
             margin: '0 0 20px',
-            fontSize: '24px',
-            color: '#333',
+            fontSize: '28px',
+            color: '#007bff',
             fontFamily: 'Arial, sans-serif'
           }}>Register</h2>
           <form onSubmit={handleRegister}>
-            <div style={{ marginBottom: '15px' }}>
+            <div style={{ marginBottom: '20px' }}>
               <input
                 type="text"
                 placeholder="Username"
@@ -138,15 +134,16 @@ function Register() {
                 required
                 style={{
                   width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
+                  padding: '12px',
+                  border: '1px solid #ced4da',
                   borderRadius: '4px',
                   boxSizing: 'border-box',
-                  fontSize: '16px'
+                  fontSize: '16px',
+                  outline: 'none'
                 }}
               />
             </div>
-            <div style={{ marginBottom: '15px' }}>
+            <div style={{ marginBottom: '20px' }}>
               <input
                 type="password"
                 placeholder="Password"
@@ -155,15 +152,16 @@ function Register() {
                 required
                 style={{
                   width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
+                  padding: '12px',
+                  border: '1px solid #ced4da',
                   borderRadius: '4px',
                   boxSizing: 'border-box',
-                  fontSize: '16px'
+                  fontSize: '16px',
+                  outline: 'none'
                 }}
               />
             </div>
-            <div style={{ marginBottom: '15px' }}>
+            <div style={{ marginBottom: '20px' }}>
               <label htmlFor="role" style={{
                 display: 'block',
                 marginBottom: '5px',
@@ -179,8 +177,8 @@ function Register() {
                 required
                 style={{
                   width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
+                  padding: '12px',
+                  border: '1px solid #ced4da',
                   borderRadius: '4px',
                   boxSizing: 'border-box',
                   fontSize: '16px',
@@ -200,7 +198,7 @@ function Register() {
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '4px',
-                padding: '10px 20px',
+                padding: '12px 20px',
                 fontSize: '16px',
                 cursor: 'pointer',
                 transition: 'background-color 0.3s ease',
@@ -212,7 +210,7 @@ function Register() {
               Register
             </button>
           </form>
-          <p>Already have an account? <Link href='/login'> Login </Link></p>
+          <p style={{ marginTop: '20px', fontSize: '16px' }}>Already have an account? <Link href='/login' style={{ color: '#007bff', textDecoration: 'none' }}>Login</Link></p>
         </div>
       </div>
     </>
