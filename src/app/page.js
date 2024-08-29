@@ -83,7 +83,7 @@ const router = useRouter();
                 <ul style={listStyle}>
                     <li style={listItemStyle}><strong>Framework:</strong> Next.js 14 with App directory</li>
                     <li style={listItemStyle}><strong>Authentication:</strong> Role-based JWT authentication</li>
-                    <li style={listItemStyle}><strong>Sign-Up:</strong> Users can select between "admin" or "team member" roles</li>
+                    <li style={listItemStyle}><strong>Sign-Up:</strong> Users can select between &#34;admin&#34; or &#34;team member&#34; roles</li>
                     <li style={listItemStyle}><strong>Authentication Methods:</strong> Username and password </li>
                     <li style={listItemStyle}><strong>Dashboards:</strong> Users see different dashboards based on their role</li>
                 </ul>
